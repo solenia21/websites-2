@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Billboard Graphic",
+    "section": "",
+    "text": "library(tidyverse)\n\n\nbillboard_long &lt;- billboard |&gt;\n  pivot_longer(\n    cols = starts_with(\"wk\"),\n    names_to = \"week\",\n    values_to = \"rank\"\n  ) |&gt;\n  mutate(week = parse_number(week)) |&gt;\n  filter(!is.na(rank)) |&gt;\n  filter(artist %in% c(\"3 Doors Down\", \"Aaliyah\", \"N'Sync\", \"Macy Gray\"))\n\nggplot(billboard_long, aes(x = week, y = rank, color = track, group = track)) +\n  geom_line(linewidth = 1.1, alpha = 0.9) +\n  geom_point(size = 1.7) +\n  scale_y_reverse(limits = c(100, 1)) +\n  scale_color_viridis_d(option = \"plasma\") +\n  labs(\n    title = \"Billboard chart climb\",\n    subtitle = \"Selected tracks and their rank over time\",\n    x = \"Week\",\n    y = \"Rank\",\n    color = \"Track\",\n    caption = \"Data: tidyr::billboard\"\n  ) +\n  theme_minimal(base_size = 12) +\n  theme(\n    plot.title = element_text(face = \"bold\", size = 18),\n    plot.subtitle = element_text(size = 11, color = \"#4c566a\"),\n    panel.grid.minor = element_blank(),\n    legend.position = \"right\"\n  )"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  }
+]
